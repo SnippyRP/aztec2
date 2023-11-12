@@ -24,4 +24,44 @@ The Aztec² is an 8-bit homebrew computer using a load-store architecture, using
     All instructions are destinatiom, source
     <instr> <isreg> <destination>; <source reg/const8>
 ## Detailed Documentation
-<span style="font-size: 30px;">This is larger text with no bold.</span>
+
+
+  **NOP (0)**
+A placeholder operation meant to fill space. Useful for padding, delays, and cleaning up code.
+
+    00000000
+    
+ <br>
+ 
+**AW (1)**
+Inserts a byte into a specified register, or copy a value from one register to another. The source/insertion byte comes directly after the instruction byte.
+*CONST:*
+
+    ; Add 0x48 into register B
+    
+    0001 0 001
+    01001000
+*COPY*
+
+    ; Copy the value of register B to register A
+    
+    0001 1 000
+    00000 001
+
+<br>
+
+**LW (2)**
+Used to load a byte from the RAM into the specified register in the instruction. This instruction takes the value inside **register C** as the low address byte, and **register D** as the memory bank to read from. (C+(D*255))
+
+    ; Load the value from RAM address 0x514 into register A
+    
+    ; Load 0x4 into register C
+    0001 0 010
+    00000100
+    
+    ; Load 0x2 into register D
+    0001 0 011
+    00000010
+    
+    ; Load the value from RAM into register A
+    0010 0 000
