@@ -428,3 +428,38 @@ Reads the destination register and writes the value to the output port for one c
     ; Write register A to the output port, for a TTL display.
 
     1111 1 000
+
+## MICROCODE
+Microcode is not used by a program, but instead is used by the CPU in order to control itself. These simply toggle parts of the CPU, and are all 1-bit in length, except for the reg selections. Custom instructions can be created using more microcode.
+
+    Reads, writes, extras, reg sel 0, reg sel 1
+
+    READS:
+        0001: READ REG
+        0010: READ MEMORY
+        0011: READ ROM
+        0100: READ COUNTER LOW
+        0101: READ COUNTER HIGH
+        0110: READ ALU
+        0111: READ FLAGS
+        1000: READ PORT
+
+    WRITES:
+        0001: WRITE REG
+        0010: WRITE MEMORY
+        0011: WRITE COUNTER
+        0100: LOADX
+        0101: LOADY
+        0110: WRITE PORT
+    EXTRAS:
+        01: ENABLE COUNTER
+        10: EI
+
+    REG SEL 0/1:
+        000: Register definied inside of the instruction register
+        001: Register decoded from current ROM reading (Assumed to be reading from RAM/ROM like second byte)
+        010: Register C
+        > .. and the rest of the registers after.
+    
+    (REG_SEL_0 means what to write too, and REG_SEL_1 is what to read from.)
+    <read> <write> <extra> <sel0> <sel1>
