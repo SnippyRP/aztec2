@@ -27,6 +27,7 @@ The Aztec² is an 8-bit homebrew computer using a load-store architecture, using
 
 
   **NOP (0)**
+  <br>
 A placeholder operation meant to fill space. Useful for padding, delays, and cleaning up code.
 
     00000000
@@ -34,6 +35,7 @@ A placeholder operation meant to fill space. Useful for padding, delays, and cle
  <br>
  
 **AW (1)**
+<br>
 Inserts a byte into a specified register, or copy a value from one register to another. The source/insertion byte comes directly after the instruction byte.
 *CONST:*
 
@@ -51,6 +53,7 @@ Inserts a byte into a specified register, or copy a value from one register to a
 <br>
 
 **LW (2)**
+<br>
 Used to load a byte from the RAM into the specified register in the instruction. This instruction takes the value inside **register C** as the low address byte, and **register D** as the memory bank to read from. (C+(D*255))
 
     ; Load the value from RAM address 0x514 into register A
