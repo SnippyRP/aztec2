@@ -105,4 +105,45 @@ Like LW, this instruction works the same, except that it reads the byte in ROM. 
 
     ; Load ROM into reg B
     0100 0 001
-    
+
+<br>
+
+**JNZ (5)**
+<br>
+Change the program counter if **destination register** != 0 else NOP. This instruction is the main part of any conditional/unconditional loop you may add. It can be used in a FOR loop, a WHILE loop, or a full unconditional loop if you set a const value to anything other than 0. This instruction takes register C as the low pointer, and register D as the high pointer.
+
+*USING A REGISTER*
+
+    ; Jump to byte 14 in ROM unconditionally
+
+    ; Write 1 to register A
+    0001 0 000
+    00000001
+
+    ; Write 14 to register C
+    0001 0 010
+    0001110
+
+    ; Write 0 to register D
+    0001 0 011
+    00000000
+
+    ; JNZ
+    0101 0 000
+
+
+*USING A CONSTANT*
+
+    ; Jump to byte 28 in ROM unconditionally
+
+    ; Write 28 to register C
+    0001 0 010
+    00011100
+
+    ; Write 0 to register D
+    0001 0 011
+    00000000
+
+    ; JNZ (reg not used)
+    0101 1 000
+    0000001
