@@ -1,5 +1,5 @@
 # Aztec² CPU
-The Aztec² is a homebrew computer using a load-store architecture, using a RISC-like instruction set.
+The Aztec² is an 8-bit homebrew computer using a load-store architecture, using a RISC-like instruction set. It has a 16-bit address bus.
 ## Instruction Set
 
     (0000) 0: NOP (No operation, skip)
@@ -23,3 +23,5 @@ The Aztec² is a homebrew computer using a load-store architecture, using a RISC
 
     All instructions are destinatiom, source
     <instr> <isreg> <destination>; <source reg/const8>
+## Detailed Documentation
+<span style="font-size: 30px;">This is larger text with no bold.</span>
