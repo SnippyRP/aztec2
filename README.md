@@ -147,3 +147,25 @@ Change the program counter if **destination register** != 0 else NOP. This instr
     ; JNZ (reg not used)
     0101 1 000
     0000001
+
+<br>
+
+**ADD (6)**
+<br>
+Adds the contents of the destination register with the source register value or a constant value, and outputs the result into the destination register.
+
+* *A conditional loop of addition can be used to create multiplication. In x*y, loop add 0 by x y times.*
+
+*REGISTER*
+
+    ; Add the value of register A with register B
+
+    0110 1 000
+    00000 001
+
+*CONSTANT*
+
+    ; Add register B and 25
+
+    0110 0 001
+    00011001
