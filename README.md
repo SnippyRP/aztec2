@@ -181,7 +181,7 @@ Like LW, this instruction works the same, except that it reads the byte in ROM. 
 
 **JNZ (5)**
 <br>
-Change the program counter if **destination register** != 0 else NOP. This instruction is the main part of any conditional/unconditional loop you may add. It can be used in a FOR loop, a WHILE loop, or a full unconditional loop if you set a const value to anything other than 0. This instruction takes register C as the low pointer, and register D as the high pointer.
+Change the program counter if **destination register** != 0 or constant value else NOP. This instruction is the main part of any conditional/unconditional loop you may add. It can be used in a FOR loop, a WHILE loop, or a full unconditional loop if you set a const value to anything other than 0. This instruction takes register C as the low pointer, and register D as the high pointer.
 
 *USING A REGISTER*
 
@@ -200,7 +200,7 @@ Change the program counter if **destination register** != 0 else NOP. This instr
     00000000
 
     ; JNZ
-    0101 0 000
+    0101 1 000
 
 
 *USING A CONSTANT*
