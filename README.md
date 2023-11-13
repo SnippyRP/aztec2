@@ -419,7 +419,7 @@ Reads the input port and write the data to the destination register.
 
 **OUTB (F)**
 <br>
-Reads the destination register and writes the value to the output port for one clock pulse, **not full instruction!!** This can be used to run a terminal output, or a TTL display.
+Reads the destination register or constant value from ROM and writes the value to the output port for one clock pulse, **not full instruction!!** This can be used to run a terminal output, or a TTL display.
 
 * A graphics card does not run on the output port, instead hooks directly onto the RAM, and has it's own VRAM and clock process.
 
