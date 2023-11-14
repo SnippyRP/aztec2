@@ -137,7 +137,7 @@ Used to load a byte from the RAM into the specified register in the instruction.
     00000010
     
     ; Load the value from RAM into register A
-    0010 0 000
+    0010 1 000
 
 <br>
 
@@ -156,7 +156,7 @@ Used to store the value in a specified register to the RAM. The reason why there
     00000010
 
     ;Save register B into RAM
-    0011 0 001
+    0011 1 001
 
 <br>
 
@@ -175,7 +175,7 @@ Like LW, this instruction works the same, except that it reads the byte in ROM. 
     00000010
 
     ; Load ROM into reg B
-    0100 0 001
+    0100 1 001
 
 <br>
 
