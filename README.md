@@ -339,6 +339,8 @@ Performs bitwise NOR operation on either the destination and source register, or
 <br>
 Performs logical left bit-shift operation on either the destination and source register, or the destination register and a constant value. Works best with register-register operations.
 
+* **Shift-amount only works for the three LSB's of the byte!**
+
 *EXAMPLE*
 
     10100101
@@ -361,6 +363,7 @@ Performs logical left bit-shift operation on either the destination and source r
 <br>
 Performs logical right bit-shift operation on either the destination and source register, or the destination register and a constant value. Works best with register-register operations.
 
+* **Shift-amount only works for the three LSB's of the byte!**
 
 *EXAMPLE*
 
