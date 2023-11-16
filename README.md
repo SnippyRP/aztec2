@@ -335,44 +335,45 @@ Performs bitwise NOR operation on either the destination and source register, or
 
 <br>
 
-**AND (B)**
+**BSL (B)**
 <br>
-Performs bitwise AND operation on either the destination and source register, or the destination register and a constant value. Works best with register-register operations.
+Performs logical left bit-shift operation on either the destination and source register, or the destination register and a constant value. Works best with register-register operations.
 
 *EXAMPLE*
 
     10100101
-    10000001
+    00000010
     ========
-    10000001
+    10010100
 
 <br>
 
 *REGISTER*
 
-    ; Bitwise AND operation on register A and register B
+    ; Left-shift operation on register A and register B
 
     1011 1 000
     00000 001
 
 <br>
 
-**OR (C)**
+**BSR (C)**
 <br>
-Performs bitwise OR operation on either the destination and source register, or the destination register and a constant value. Works best with register-register operations.
+Performs logical right bit-shift operation on either the destination and source register, or the destination register and a constant value. Works best with register-register operations.
+
 
 *EXAMPLE*
 
     10100101
-    10000001
+    00000011
     ========
-    10100101
+    00010100
 
 <br>
 
 *REGISTER*
 
-    ; Bitwise OR operation on register A and register B
+    ; Right-shift operation on register A and register B
 
     1100 1 000
     00000 001
