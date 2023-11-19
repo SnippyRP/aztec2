@@ -433,7 +433,7 @@ Reads the destination register or constant value from ROM and writes the value t
 
     1111 1 000
 
-## MICROCODE
+## Microcode
 Microcode is not used by a program, but instead is used by the CPU in order to control itself. These simply toggle parts of the CPU, and are all 1-bit in length, except for the reg selections. Custom instructions can be created using more microcode.
 
     Reads, writes, extras, reg sel 0, reg sel 1
@@ -467,3 +467,134 @@ Microcode is not used by a program, but instead is used by the CPU in order to c
     
     (REG_SEL_0 means what to write too, and REG_SEL_1 is what to read from.)
     <read> <write> <extra> <sel0> <sel1>
+
+## Assembly and Macros
+Macros can be used to perform multiple instructions when programming faster. Programs written with macros will be easier to understand, but be less efficient than simply writing using assembly.
+
+**Usage**
+
+Machine code for the CPU can be automatically written using a version of assembly I created. This current version is a very crude python program, and I plan to expand on this later. You follow the same instructions as outlined in the instruction set.
+
+For example, to load 60 into register A, you would write:
+
+    aw a, 60
+
+The code follows the same structure as writing through pure machine code. It uses \<instruction> \<destination> \<source>.
+If an instruction only has one argument, it can be written like this:
+
+    outb 87
+
+When writing a program, you can create a comment if a line starts with a semicolon (;).
+
+If you would like to see more example programs before writing your own, see the 'examples' directory.
+
+**Manual Compilation**
+
+If you would like to compile a program manually, without using the compiler, you need to simply write out the machine code bytes, as stated in the instruction set documentation. Then to insert that into the program ROM, simply convert it into hexadecimal. I like to use the website https://www.rapidtables.com/convert/number/binary-to-hex.html to convert easily. Once you have converted all your binary, list the program byte by byte into a text file. Once done, right-click the ROM and select "load image". This will bring up a file selection window. Simply select your file and choose "v2.0 raw".
+
+**Macros**
+
+One of the big reasons to use a compiler is the use of macros. A macro is like pasting a wall of instructions into your code with custom variables. For example, multiplication is not native to the CPU hardware. You can easily implement it by using the *mul* macro. Macros should not be treated as a stand-in for writing assembly, and can currently produce unexpected behaviour. All macros currently use base-10. Keep in mind that this is currently being worked on, and some unexpected behaviour can come from this. If you happen to write a fix, please share it with me ;-)
+
+    ; multiply register A with register B
+    mul a, b
+
+    ; multiply register A with 6
+    mul a, 6
+
+Here are all the currently usable macros:
+
+    goto <ln>
+    goto if <reg/const> <comp> <reg/const> <ln>
+    define <vname> <val>
+    load <addr> <reg/const>
+    store <reg> <addr> (assembly should be used if programmably interacting with memory)
+    mul <reg> <reg/const>
+
+<br>
+
+**goto**
+
+The *goto* macro makes the program jump unconditionally to whatever line in the program you want.
+
+    goto 5
+
+<br>
+
+**gotoif**
+
+The *gotoif* macro jumps the program to thwtaver line in the program only if the conditional is met.
+
+* You can use '<', '==', '>', '!=' as functioning comapritors
+
+* **This macro will overwrite a lot of the registers, so save any data you need into RAM before running!**
+
+<br>
+
+    gotoif 5 < 4, 0
+
+    gotoif a == 5, 62
+
+<br>
+
+**define**
+The *define* macro is used to define a variable. Unlike most other *good* languages, a variable cannot be changed later in the program, and can only be defined once. It can be either a register or a constant value, and can be used in both instructions and macros.
+* When using a variable, it must start with a '#' in the instruction.
+
+<br>
+
+    define x, 5
+    define y, 4
+
+    aw a, #x
+    aw b, #y
+
+    mul a, b
+
+    ; or do
+
+    aw a, #x
+    mul a, #y
+
+<br>
+
+**load**
+<br>
+*Load* can be used to easily load a constant address into a register. When you need to programmably use memory, it is more efficient to use regular assembly, so that has not been implemented. Same goes for *save*.
+
+* This instruction will overwrite some registers, so be careful!
+
+<br>
+
+    load a, 6
+
+<br>
+
+**store**
+<br>
+*Store* can be used to easily save the value of a constant value or the value in a register to a constant RAM address. When you need to programmably use memory, it is more efficient to use regular assembly, so that has not been implemented.
+
+* This instruction will overwrite some registers, so be careful!
+
+<br>
+
+    save 50, a
+    save 51, 0
+
+<br>
+
+**mul**
+<br>
+*Mul* is used like any normal arithmatic instruction. It will multiply any register with either another register or a constant value, and outout into the destination register. Can also be used with variables.
+
+* This operation will overwrite pretty much every register, along with the first few spots inside of RAM. This is like a *for* loop of repeated addition, and has to store the loop index, current number, coefficient A, and if using two registers, coefficient B.
+
+* Using *mul* will also use up a lot of the disk, and is around 44 bytes long. It may also take up a lot of time, depending on clock rate.
+
+<br>
+
+    mul a, b
+
+    ; or
+
+    mul a, 6
