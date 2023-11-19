@@ -1,5 +1,6 @@
 # Aztec² CPU
-The Aztec² is an 8-bit homebrew computer using a load-store architecture, using a RISC-like instruction set. It has a 16-bit address bus.
+The Aztec² is an 8-bit homebrew computer using a load-store architecture, using a RISC-like instruction set. It has a 16-bit address bus. The circuit was originally made in [Logisim Evolution](https://github.com/logisim-evolution/logisim-evolution), and is being built in real life!
+
 ## Instruction Set
 
     (0000) 0: NOP (No operation, skip)
