@@ -15,8 +15,8 @@ The Aztec² is an 8-bit homebrew computer using a load-store architecture, using
     (1000) 8: ADC^ (Add reg source with the secondary register, add carry bit and output that to the reg source)
     (1001) 9: SBB^ (Subtract reg source with the secondary register, subtract borrow bit and output that to the reg source)
     (1010) A: NOR  (Perform NOR bitwise operation on reg source with secondary register, then output into reg source)
-    (1011) B: AND  (Perform AND bitwise operation on reg source with secondary register, then output into reg source)
-    (1100) C: OR   (Perform OR bitwise operation on reg source with secondary register, then output into reg source)
+    (1011) B: BSL  (Perform logical left shift on destination register)
+    (1100) C: BSR  (Perform logical right shift on destination register)
     (1101) D: CMP  (Compare destination reg with source register, output to flags register)
 
     (1110) E: INB  (Write the contents of the input port to the register destination)
